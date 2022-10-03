@@ -62,7 +62,11 @@ body {
 
 section {
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
+
+  @include mixins.desktop-lrg() {
+    max-width: 1600px;
+  }
 
   & h2 {
     letter-spacing: 3px;

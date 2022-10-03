@@ -67,7 +67,12 @@ body {
 
 section {
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
+}
+@media only screen and (min-width: 1601px) {
+  section {
+    max-width: 1600px;
+  }
 }
 section h2 {
   letter-spacing: 3px;
@@ -87,7 +92,7 @@ section h2::after {
     margin: -1.7vh -2vw 0 2vw;
   }
 }
-@media only screen and (min-width: 1201px) and (max-width: 1440px) {
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   section h2::after {
     margin: -1.7vh -2vw 0 2vw;
   }
@@ -154,7 +159,7 @@ section.about {
     align-content: center;
   }
 }
-@media only screen and (min-width: 1201px) and (max-width: 1440px) {
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   section.about {
     display: flex;
     flex-flow: row wrap;
@@ -163,7 +168,7 @@ section.about {
     align-content: center;
   }
 }
-@media only screen and (min-width: 1441px) {
+@media only screen and (min-width: 1601px) {
   section.about {
     display: flex;
     flex-flow: row wrap;
@@ -203,7 +208,7 @@ section.about img {
     width: 250px;
   }
 }
-@media only screen and (min-width: 1201px) and (max-width: 1440px) {
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   section.about img {
     width: 350px;
   }
@@ -221,12 +226,12 @@ section.about p {
     max-width: 40vw;
   }
 }
-@media only screen and (min-width: 1201px) and (max-width: 1440px) {
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   section.about p {
     max-width: 40vw;
   }
 }
-@media only screen and (min-width: 1441px) {
+@media only screen and (min-width: 1601px) {
   section.about p {
     max-width: 40vw;
   }
@@ -272,12 +277,12 @@ section .projects__items {
     width: 350px;
   }
 }
-@media only screen and (min-width: 1201px) and (max-width: 1440px) {
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   section .projects__items {
     width: 350px;
   }
 }
-@media only screen and (min-width: 1441px) {
+@media only screen and (min-width: 1601px) {
   section .projects__items {
     width: 400px;
   }
@@ -291,12 +296,12 @@ section .projects__items--first {
     margin: 0 40vw;
   }
 }
-@media only screen and (min-width: 1201px) and (max-width: 1440px) {
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   section .projects__items--first {
     width: 100vw;
   }
 }
-@media only screen and (min-width: 1441px) {
+@media only screen and (min-width: 1601px) {
   section .projects__items--first {
     width: 100vw;
   }
