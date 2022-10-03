@@ -1,30 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
  
-<!-- Created by Jess -->
+<!-- Created by Jess 👋 -->
 
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css"/>
-
     <title>Jessica Dinh - Portfolio</title>
   </head>
 
   <body>
     <header>
-      <ul>
-      <li>Home</li>
-      <li>Skillset</li>
-      <li>Projects</li>
-      <li>Contact Me</li>
+      <ul class="nav">
+      <li class="nav__li"><a href="#landing">Home</a></li>
+      <li class="nav__li"><a href="#about">About</a></li>
+      <li class="nav__li"><a href="#skills">Skills</a></li>
+      <li class="nav__li"><a href="#projects">Projects</a></li>
+      <li class="nav__li"><a href="#contact">Contact</a></li>
       </ul>
     </header>
 
-    <main>
-      <h1> Jess - Junior Software Engineer</h1>
-    </main>
+    <section id="landing" class="landing section-blocks">
+      <h1> Hi I'm <span class="name">Jess!</span></h1>
+      <h2>Junior Software Developer</h2>
+      <p>Currently studying 🍵</p>
+    </section>
+
+    <section id="about" class="about section-blocks">
+      <h2>About </h2>
+      <img src="imgs/kimetsu_edited.jpg" />
+      <p>Hi, my name is Jess 👋. I enjoy writing code and making things look nice. When I'm free, I'm enjoying a cup of coffee with a book or watching anime. You can also find me reselling.</p>
+    </section>
+
+    <section id="skills" class="skills section-blocks">
+      <h2>Skills</h2>
+      <p>Some of my current skills.</p>
+      <ul>
+        <li>HTML</li>
+        <li>CSS / SASS</li>
+        <li>Javascript</li>
+        <li>Java </li>
+        <li>BEM</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="projects section-blocks">
+      <div class="projects__items--first">
+        <h2>Projects</h2>
+        <p>Past works</p>
+      </div>
+      
+
+      <div class="projects__items">
+        <h3>Projects</h3> 
+        <img src="imgs/kimetsu_edited.jpg"/>
+        <p>Description <a href="">Link 1</a></p>
+      </div> 
+
+      <div class="projects__items">
+        <h3 class="projects__items__title">Projects</h3> 
+        <img src="imgs/kimetsu_edited.jpg"/>
+        <p>Description <a href="">Link 1</a></p>
+      </div>
+
+      <div class="projects__items">
+        <h3>Projects</h3> 
+        <img src="imgs/kimetsu_edited.jpg"/>
+        <p>Description <a href="">Link 1</a></p>
+      </div>
+
+      <div class="projects__items">
+        <h3>Projects</h3> 
+        <img src="imgs/kimetsu_edited.jpg"/>
+        <p>Description <a href="">Link 1</a></p>
+      </div>
+
+      <div class="projects__items">
+        <h3>Projects</h3> 
+        <img src="imgs/kimetsu_edited.jpg"/>
+        <p>Description <a href="">Link 1</a></p>
+      </div>
+      
+      <div class="projects__items">
+        <h3>Projects</h3> 
+        <img src="imgs/kimetsu_edited.jpg"/>
+        <p>Description <a href="">Link 1</a></p>
+      </div>
+
+    </section>
+
+    <section id="contact" class="contact section-blocks">
+      <h2>Wanna get in touch?</h2>
+      <p>Other places I live on the internet</p>
+      <ul>
+        <li><a href="">@ Email</a></li>
+        <li><a href="https://www.linkedin.com/in/xjessd/">@ LinkedIn</a></li>
+        <li><a href="https://github.com/xJessD">@ GitHub</a></li>
+        <li><a href="https://codepen.io/xJessD">@ Codepen</a></li>
+      </ul>
+    </section>
+
+    
   </body>
 
 </html>

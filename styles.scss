@@ -1,4 +1,304 @@
+@use "./partials/palette";
+@use "./partials/mixins";
+@use "./partials/devices";
+
+/*Resets and defaults */
 * {
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+
+
+/* Else */
+body {
+  background-image: url("imgs/side.png");
+  background-color: #FFF;
+  color: palette.$myrtle-green;
+  @include mixins.flex-box($justify: space-around, $align: center, $wrap: wrap);
+  min-width: 400px;
+  
+}
+
+.nav {
+  box-shadow: 0 0 15px palette.$midnight-green-eagle-green;
+  background-color: palette.$midnight-green-eagle-green; 
+  width: 100vw;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  @include mixins.flex-box(row, right, center);
+
+  @include mixins.phone() {
+    @include mixins.flex-box(row, space-around, center);
+  }
+
+  @include mixins.tablet-portrait() {
+    @include mixins.flex-box(row, space-around, center);
+  }
+
+  
+
+  &__li {
+    list-style-type: none;
+    margin: 10px;
+
+    & a {
+      color: #FFF;
+      padding: 10px;
+
+      &:hover {
+        background-color: #AAA;
+      }
+    }
+  }
+}
+
+section {
+  min-height: 100vh;
+  min-width: 100vw;
+
+  & h2 {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5vh;
+
+    &::after {
+      background-color: palette.$antique-ruby;
+      display: block;
+      content: "";
+      height: 2vh;
+      margin: -1.7vh -5vw 0 5vw;
+      opacity: 20%;
+
+      @include mixins.laptop() {
+        margin: -1.7vh -2vw 0 2vw;
+      }
+
+      @include mixins.desktop() {
+        margin: -1.7vh -2vw 0 2vw;
+      }
+    }
+  }
+
+  & p {
+    font-size: 20px;
+    margin-bottom: 2vh;
+  }
+
+  &.landing {
+    z-index: -1;
+    @include mixins.flex-box($direction: column, $justify: center, $align: end);
+
+    & h1 {
+      color: palette.$antique-ruby;
+      font-weight: 100;
+      font-size: 50px;
+      margin-right: 10vw;
+      margin-bottom: -40px;
+      z-index: 2;
+
+      & .name {
+        font-size: 100px;
+        font-family: 'Alex Brush', cursive;
+      }
+    }
+
+    & h2 {
+      color: #FFF;
+      background-color: palette.$midnight-green-eagle-green;
+      text-transform: none;
+      font-size: 20px;
+      margin-right: 10vw;
+      margin-bottom: 0;
+      padding: 20px;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    & p {
+      margin-right: 10vw;
+    }
+  }
+  
+  &.about {
+    
+    @include mixins.flex-box (column);
+
+    @include mixins.tablet-landscape() {
+      @include mixins.flex-box($direction: row, $wrap: wrap);
+      align-content: center;
+    }
+    @include mixins.laptop() {
+      @include mixins.flex-box($direction: row, $wrap: wrap);
+      align-content: center;
+    }
+
+    @include mixins.desktop() {
+      @include mixins.flex-box($direction: row, $wrap: wrap);
+      align-content: center;
+    }
+    @include mixins.desktop-lrg() {
+      @include mixins.flex-box($direction: row, $wrap: wrap);
+      align-content: center;
+    }
+
+
+
+    & h2 {
+      margin-right: 30vw;
+        margin-left: 30vw;
+
+      @include mixins.phone() {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    & img {
+      border-radius: 50%;
+      box-shadow: 0 0 15px palette.$myrtle-green;
+      margin: 0 10vh;
+      width: 350px;
+
+      @include mixins.phone() {
+        width: 300px;
+      }
+
+      @include mixins.tablet-landscape() {
+        width: 200px;
+      }
+      @include mixins.laptop() {
+        width: 250px;
+      }
+      @include mixins.desktop() {
+        width: 350px;
+      }
+      
+    }
+
+    & p {
+      padding: 5vw;
+
+      @include mixins.tablet-landscape() {
+        max-width: 40vw;
+      }
+
+      @include mixins.laptop() {
+        max-width: 40vw;
+      }
+      @include mixins.desktop() {
+        max-width: 40vw;
+      }
+      @include mixins.desktop-lrg() {
+        max-width: 40vw;
+      }
+      
+    }
+  }
+  
+  &.skills {
+    @include mixins.flex-box(column);
+
+    & ul {
+      font-size: 20px;
+      list-style-type: none;
+
+      @include mixins.phone() {
+        @include mixins.flex-box($direction: column, $justify: space-around, $wrap: wrap);
+      }
+
+      & li {
+        margin: 2vh;
+        font-weight: bolder;
+      }
+      
+    }
+  }
+  
+  &.projects {
+    @include mixins.flex-box($direction: row, $justify: space-around, $wrap: wrap);
+
+  }
+  & .projects {
+
+    &__items {
+      padding: 5px;
+      width: 250px;
+      @include mixins.flex-box($direction: column);
+
+      @include mixins.laptop() {
+        width: 350px;
+      }
+      @include mixins.desktop() {
+        width: 350px;
+      }
+      @include mixins.desktop-lrg() {
+        width: 400px;
+      }
+    
+
+      &--first {
+        text-align: center;
+        margin: 0 30vw;
+
+        @include mixins.laptop() {
+          margin: 0 40vw;
+        }
+        @include mixins.desktop() {
+          width: 100vw;
+        }
+        @include mixins.desktop-lrg() {
+          width: 100vw;
+        }
+
+        & h2 {
+          width: auto;
+        }
+      }
+      
+      & img {
+        width: 200px;
+        border-radius: 25% 0;
+
+        @include mixins.laptop() {
+          width: 300px;
+        }
+      }
+    }
+  }
+
+  &.contact {
+    @include mixins.flex-box($direction: column);
+    font-size: 20px;
+
+    & ul {
+      list-style-type: none;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+
+      @include mixins.phone {
+        @include mixins.flex-box($direction: column);
+      }
+      
+      & li {
+        margin: 2vh;
+
+        & a {
+          //background-color: #FFF;
+          padding: 15px;
+          color: palette.$antique-ruby;
+        }
+      }
+    }
+  }
+}
+
