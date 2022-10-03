@@ -2,6 +2,9 @@
 @use "./partials/mixins";
 @use "./partials/devices";
 
+$proj-img-max: 300px;
+$shawdow-default: 0 0 15px palette.$midnight-green-eagle-green;
+
 /*Resets and defaults */
 * {
   margin: 0;
@@ -10,28 +13,40 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 
 /* Else */
 body {
   background-image: url("imgs/side.png");
-  background-color: #FFF;
   color: palette.$myrtle-green;
-  @include mixins.flex-box($justify: space-around, $align: center, $wrap: wrap);
   min-width: 400px;
-  
+  @include mixins.flex-box($justify: space-around, $align: center, $wrap: wrap);
+
+  &::-webkit-scrollbar {
+    background-color: palette.$alabaster;
+    width: 15px;
+
+    &-thumb {
+      background: palette.$myrtle-green;
+      border-radius: 7px;
+    }
+  }
 }
 
+
+
 .nav {
-  box-shadow: 0 0 15px palette.$midnight-green-eagle-green;
+  box-shadow: $shawdow-default;
   background-color: palette.$midnight-green-eagle-green; 
   width: 100vw;
   z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  @extend %uppercase-space;
 
   @include mixins.flex-box(row, right, center);
 
@@ -50,11 +65,13 @@ body {
     margin: 10px;
 
     & a {
+      @include mixins.transitions();
       color: #FFF;
       padding: 10px;
 
       &:hover {
-        background-color: #AAA;
+        @include mixins.transitions();
+        background-color: rgba($color: #FFF, $alpha: .3);
       }
     }
   }
@@ -69,8 +86,7 @@ section {
   }
 
   & h2 {
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    @extend %uppercase-space;
     margin-bottom: 5vh;
 
     &::after {
@@ -88,6 +104,9 @@ section {
       @include mixins.desktop() {
         margin: -1.7vh -2vw 0 2vw;
       }
+      @include mixins.desktop-lrg() {
+        margin: -1.7vh -2vw 0 2vw;
+      }
     }
   }
 
@@ -102,13 +121,15 @@ section {
 
     & h1 {
       color: palette.$antique-ruby;
-      font-weight: 100;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
       font-size: 50px;
       margin-right: 10vw;
-      margin-bottom: -40px;
-      z-index: 2;
+      margin-bottom: -40px; // to make the h2 nest right under 
+      z-index: 2; 
 
       & .name {
+        font-weight: normal;
         font-size: 100px;
         font-family: 'Alex Brush', cursive;
       }
@@ -120,7 +141,7 @@ section {
       text-transform: none;
       font-size: 20px;
       margin-right: 10vw;
-      margin-bottom: 0;
+      margin-bottom: 0; 
       padding: 20px;
 
       &::after {
@@ -141,6 +162,7 @@ section {
       @include mixins.flex-box($direction: row, $wrap: wrap);
       align-content: center;
     }
+
     @include mixins.laptop() {
       @include mixins.flex-box($direction: row, $wrap: wrap);
       align-content: center;
@@ -150,16 +172,15 @@ section {
       @include mixins.flex-box($direction: row, $wrap: wrap);
       align-content: center;
     }
+
     @include mixins.desktop-lrg() {
       @include mixins.flex-box($direction: row, $wrap: wrap);
       align-content: center;
     }
 
-
-
     & h2 {
       margin-right: 30vw;
-        margin-left: 30vw;
+      margin-left: 30vw;
 
       @include mixins.phone() {
         margin-left: 0;
@@ -169,42 +190,22 @@ section {
 
     & img {
       border-radius: 50%;
-      box-shadow: 0 0 15px palette.$myrtle-green;
+      box-shadow: $shawdow-default ;
       margin: 0 10vh;
       width: 350px;
 
-      @include mixins.phone() {
-        width: 300px;
-      }
-
-      @include mixins.tablet-landscape() {
-        width: 200px;
-      }
-      @include mixins.laptop() {
-        width: 250px;
-      }
-      @include mixins.desktop() {
-        width: 350px;
-      }
+      @include mixins.phone() { width: 300px; }
+      @include mixins.tablet-landscape() { width: 200px; }
+      @include mixins.laptop() { width: 250px; }
       
     }
 
     & p {
       padding: 5vw;
+      max-width: 40%;
 
-      @include mixins.tablet-landscape() {
-        max-width: 40vw;
-      }
-
-      @include mixins.laptop() {
-        max-width: 40vw;
-      }
-      @include mixins.desktop() {
-        max-width: 40vw;
-      }
-      @include mixins.desktop-lrg() {
-        max-width: 40vw;
-      }
+      @include mixins.phone() { max-width: 100%; }
+      @include mixins.tablet-portrait() { max-width: 100%; }
       
     }
   }
@@ -212,11 +213,17 @@ section {
   &.skills {
     @include mixins.flex-box(column);
 
+    
+
     & ul {
       font-size: 20px;
       list-style-type: none;
+      @include mixins.flex-box(row);
 
       @include mixins.phone() {
+        @include mixins.flex-box($direction: column, $justify: space-around, $wrap: wrap);
+      }
+      @include mixins.tablet-portrait() {
         @include mixins.flex-box($direction: column, $justify: space-around, $wrap: wrap);
       }
 
@@ -224,14 +231,18 @@ section {
         margin: 2vh;
         font-weight: bolder;
       }
-      
     }
   }
   
   &.projects {
-    @include mixins.flex-box($direction: row, $justify: space-around, $wrap: wrap);
+    @include mixins.flex-box(row, space-around, start, wrap);
 
+    @include mixins.laptop() {
+      @include mixins.flex-box($justify: center, $wrap: wrap);
+      max-width: 1600px;
+    }
   }
+
   & .projects {
 
     &__items {
@@ -239,43 +250,54 @@ section {
       width: 250px;
       @include mixins.flex-box($direction: column);
 
-      @include mixins.laptop() {
-        width: 350px;
-      }
-      @include mixins.desktop() {
-        width: 350px;
-      }
-      @include mixins.desktop-lrg() {
-        width: 400px;
-      }
+      @include mixins.laptop() { width: 350px; }
+      @include mixins.desktop() { width: 350px; }
+      @include mixins.desktop-lrg() { width: 400px; }
     
 
       &--first {
         text-align: center;
         margin: 0 30vw;
 
-        @include mixins.laptop() {
-          margin: 0 40vw;
-        }
-        @include mixins.desktop() {
-          width: 100vw;
-        }
-        @include mixins.desktop-lrg() {
-          width: 100vw;
-        }
+        @include mixins.laptop() { margin: 0 40vw; }
+        @include mixins.desktop() { width: 100vw; }
 
-        & h2 {
-          width: auto;
-        }
+        @include mixins.desktop-lrg() { margin: 4vh 25vw; width: 100vw; }
+
+
+      }
+
+      &__title {
+        font-size: 20px;
+        color: palette.$antique-ruby;
+        @extend %uppercase-space;
       }
       
       & img {
+        @include mixins.transitions();
+        border: 4px solid #FFF;
         width: 200px;
-        border-radius: 25% 0;
+        //border-radius: 25% 0;
+        
 
-        @include mixins.laptop() {
-          width: 300px;
+        @include mixins.laptop() { width: $proj-img-max; }
+        @include mixins.desktop() { width: $proj-img-max; }
+        @include mixins.desktop-lrg() { width: $proj-img-max; }
+
+        &:hover {
+          @include mixins.transitions(opacity);
+          opacity: .5;
+          
         }
+      }
+
+      & p {
+        margin-top: 2vh;
+        max-width: 300px;
+      }
+
+      & a {
+        color: palette.$myrtle-green;
       }
     }
   }
@@ -286,9 +308,7 @@ section {
 
     & ul {
       list-style-type: none;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-
+      @extend %uppercase-space;
       @include mixins.phone {
         @include mixins.flex-box($direction: column);
       }
@@ -297,12 +317,25 @@ section {
         margin: 2vh;
 
         & a {
-          //background-color: #FFF;
           padding: 15px;
           color: palette.$antique-ruby;
+          
         }
       }
     }
   }
 }
 
+.credit {
+  background-color: rgba($color: palette.$alabaster, $alpha: .3);
+  text-align: center;
+  width: 100vw;
+  @include mixins.q-box-model( $padding: 15px);
+  @extend %uppercase-space;
+
+}
+
+%uppercase-space {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
